@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+
+    <script src="/scripts/index.js" defer></script>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Create new Account</h2>
+            <span></span>
+            <span id="login-form"></span>
+            <form action="" method="post" id="signup-form">
+                <label for="email">Enter you email</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+                <label for="username">Choose Username:</label>
+                <input type="text" name="username" placeholder="What should we call you?" id="username"  class="form-control">
+                <label for="password">Create Password:</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+                <input type="checkbox" name="agree" id="agree" required>
+                <label for="agree">By clicking signup you agree to <br> our <a href="">Terms of services</a></label><br>
+                <button class="btn btn-success">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="/login">Sign In</a></p>
+        </div>
+    </div>
+
+   
+</body>
+</html>

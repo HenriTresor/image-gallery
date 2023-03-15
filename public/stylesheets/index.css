@@ -1,0 +1,321 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    font-family: Outfit, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container{
+    width: 100%;
+   text-align: center;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-evenly;
+   padding: 10px;
+   color: grey;
+   font-size: 1.5rem;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+#start{
+    padding: 10px;
+    font-size: 1rem;
+    background: rgb(11, 141, 233);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.header{
+
+    /* position: fixed; */
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    margin: 10px 0;
+    background: whitesmoke;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+.aside a{
+    text-decoration: none;
+    background: red;
+    padding: 10px;
+    color: white;
+}
+
+footer{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+
+.container-fluid .upload-new{
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+
+
+.container-fluid input[type='file']{
+    visibility: hidden;
+}
+
+.container-fluid label[for='image']{
+ padding: 10px;
+ background: darkblue;
+ color: white;
+ cursor: pointer;
+ width: 300px;
+ height: 50px;
+ overflow: hidden;
+}
+
+.container-fluid label[for='image'].active{
+    background: grey;
+    border: 2px solid rgb(43, 43, 43);
+}
+
+.container-fluid .upload{
+    padding: 10px;
+    cursor: pointer;
+    
+}
+
+.upload-new input[type='email']{
+    position: absolute;
+    left: -50000px;
+}
+
+
+
+.hamburger
+{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger .bar{
+    width: 40px;
+    height: 5px;
+    background: black;
+    border-radius: 30px;
+}
+
+.error{
+    padding: 5px;
+    background: rgb(255, 92, 92);
+    color: white;
+}
+
+.aside{
+    display: none;
+}
+
+.aside.active{
+    position: fixed;
+    width: 65vh;
+    background: rgba(0, 0, 0, 0.803);
+    height: 100%;
+    float: right;
+    right: 0;
+    top: 0;
+    box-shadow: 2px 0px 30px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+    font-weight: 700;
+    padding: 20px 0;
+    z-index: 9999;
+    animation: aside .3s linear forwards;
+}
+
+@keyframes aside {
+    from{
+        right: -500px;
+        opacity: 0;
+    }
+    to{
+        right: 0;
+        opacity: 1;
+    }
+}
+
+.hamburger.active{
+    display: none;
+}
+
+.aside .close, .close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    padding:10px ;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.close:hover{
+    background: red;
+    transform: scale(0.98);
+}
+
+.uploaded-images{
+    width: 100%;
+    display: grid;
+    grid-template: 1fr  / repeat(5, 1fr);
+}
+
+.uploaded-images .card{
+    margin: 10px;
+    cursor: pointer;
+}
+
+.uploaded-images img{
+    width: 100%;
+    height: auto;
+}
+
+.full-image{
+    display: none;
+}
+
+.full-image.active{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.93);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 99999;
+}
+
+.full-image img{
+    width: 65dvh;
+    height: 65dvh;
+}
+
+.btns {
+    width: 100%;
+    margin: 20px 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btns .btn{
+    cursor: pointer;
+    padding: 10px 30px;
+    color: white;
+    border: none;
+}
+
+.btns .btn:nth-child(2){
+    background: red;
+}
+
+.btns .btn:nth-child(1){
+    background: rgb(25, 49, 203);
+}
+
+.btn:active{
+    transform: scale(0.95);
+}
+
+.btns .btn i{
+    font-size: 1.2rem;
+}
+
+.nothing{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+}
+
+.profile{
+    background: darkblue;
+    color: white;
+    padding: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.upload-picture{
+    display: none;
+}
+
+.upload-picture.active{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: grey;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.upload-picture.active form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 60%;
+    background: white;
+    gap: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.upload-picture.active input[type='file']{
+    visibility: hidden;
+}
+
+.upload-picture.active label{
+    background: grey;
+    color: white;
+    padding: 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.upload-picture.active button{
+    padding: 10px 20px;
+    background: rgb(0, 0, 109);
+    color: white;
+    border: none;
+    cursor: pointer;
+}

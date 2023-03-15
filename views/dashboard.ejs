@@ -1,0 +1,135 @@
+<link rel="stylesheet" href="/stylesheets/index.css">
+<%- include("partials/header.ejs") -%>
+
+    <div class="aside">
+        <button class="close">&times;</button>
+        <h3>Menu</h3>
+        <p>
+            Email: <%= email%>
+        </p>
+
+        <button class="btn">UpDate Profile picture</button>
+
+        <a href="/logout">logout</a>
+    </div>
+
+    <div class="full-image">
+        <button class="close">&times;</button>
+        <img src="" alt="full image">
+        <div class="btns">
+            <button class="btn"><i class="fa fa-info"></i> Info</button>
+            <button class="btn"><i class="fa fa-trash"></i> Delete</button>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="upload-new">
+            <form action="/images" method="post" enctype="multipart/form-data">
+                <input type="email" name="email" id="" value="<%= email%>">
+                <label for="image">Click to Select image</label>
+                <button type="submit" class="upload">upload</button>
+                <input type="file" name="image" id="image">
+            </form>
+        </div>
+
+        <!-- <div class="uploaded-images">
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <img src="https://www.photo.gallery/content/1.index/x3-photo-gallery-website.jpg" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div> -->
+
+        <div class="uploaded-images"></div>
+    </div>
+
+    <script>
+
+        let input = document.querySelector('input[type="file"]')
+        input.addEventListener('change', () => {
+            let label = document.querySelector('label')
+            label.innerText = input.value.split('\\').at(-1)
+            label.classList.add('active')
+        })
+
+        const createImageInBody = (imgName, id) => {
+            let uploadedImages = document.querySelector('.uploaded-images')
+            // let row = document.querySelector('.row')
+            // let column = document.createElement('div')
+            // column.classList.add('column')
+            let card = document.createElement('div')
+            card.classList.add('card')
+
+            let img = document.createElement('img')
+            img.src = `/images/uploads/${imgName}`
+
+            card.append(img)
+            // column.append(card)
+            // row.append(column)
+            uploadedImages.append(card)
+
+            card.addEventListener('click', () => {
+                let fullImage = document.querySelector('.full-image')
+                fullImage.classList.toggle('active')
+                fullImage.childNodes[3].src = `/images/uploads/${imgName}`
+
+                let close = document.querySelector('.full-image .close')
+                close.addEventListener("click", function(){
+                    this.parentElement.classList.remove('active')
+                })
+                // delete image
+
+                let btn = document.querySelectorAll('.btns .btn')
+                btn[1].addEventListener('click', async e => {
+                    const res = await fetch(`/images/${id}`, {
+                        method:'DELETE'
+                    })
+
+                    const data = await res.json()
+                    if(data.message == "image deleted successfully"){
+                        location.assign('/dashboard')
+                    }
+                })
+            })
+        }
+
+        window.addEventListener('load', async () => {
+            let res = await fetch('/images/<%= id%>', {
+                method: 'GET'
+            })
+
+            let data = await res.json()
+
+            if (data.message == "no images found for user") {
+                let uploadedImages = document.querySelector('.uploaded-images')
+                uploadedImages.classList.add('nothing')
+                uploadedImages.innerText = "No images found"
+            } else {
+                await data.forEach(element => {
+                    createImageInBody(element.image, element._id)
+                });
+            }
+        })
+
+        let hamburger = document.querySelector('.hamburger')
+        hamburger.addEventListener('click', () => {
+            let aside = document.querySelector('.aside')
+            aside.classList.toggle('active')
+            hamburger.classList.toggle('active')
+        })
+
+        let close = document.querySelectorAll('.aside .close')
+        close[0].addEventListener('click', () => {
+            let aside = document.querySelector('.aside')
+            aside.classList.toggle('active')
+            hamburger.classList.toggle('active')
+        })
+
+
+
+    </script>
+
+    <%- include('partials/footer.ejs') -%>

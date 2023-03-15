@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="header">
+    <div class="profile">
+        <% if(profile) { %>
+
+            <img src="/images/profiles/<%= profile%>" alt="">
+
+            <% } else { %>
+                <h1>
+                    <%= username[0].toUpperCase()%>
+                </h1>
+
+                <% } %>
+    </div>
+    <h1>
+        <%= username%>
+    </h1>
+
+    <!-- <a href="/logout">logout</a> -->
+
+    <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+</div>
+
+<div class="upload-picture">
+    <button class="close">&times;</button>
+    <form action="/users/profile" enctype="multipart/form-data" method="post">
+        <h4>Click the button to select your profile picture</h4>
+        <input type="email" name="email" id="email" value="<%= email%>">
+        <input type="file" name="profile" id="profile">
+        <label for="profile">Upload Your Profile Picture</label>
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+<script>
+    let avatar = document.querySelector('.profile')
+    avatar.addEventListener('click', ()=>{
+        let uploadPicture = document.querySelector(".upload-picture")
+        uploadPicture.classList.toggle('active')
+    })
+
+    let closeBtn = document.querySelector('.upload-picture .close')
+    closeBtn.addEventListener('click', function (){
+        this.parentElement.classList.remove('active')
+    })
+</script>
