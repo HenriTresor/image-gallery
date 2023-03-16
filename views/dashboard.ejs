@@ -1,5 +1,14 @@
+<title>User Dashboard - Image gallery</title>
 <link rel="stylesheet" href="/stylesheets/index.css">
 <%- include("partials/header.ejs") -%>
+
+
+    <div class="loader">
+        <div class="spinner">
+        </div>
+        <h2>Getting your Images...</h2>
+        <p>Please Wait!</p>
+    </div>
 
     <div class="aside">
         <button class="close">&times;</button>
@@ -43,10 +52,13 @@
             </div>
         </div> -->
 
-        <div class="uploaded-images"></div>
+        <div class="uploaded-images">
+        </div>
     </div>
 
     <script>
+        let loader = document.querySelector('.loader')
+        loader.classList.toggle('active')
 
         let input = document.querySelector('input[type="file"]')
         input.addEventListener('change', () => {
@@ -55,7 +67,8 @@
             label.classList.add('active')
         })
 
-        const createImageInBody = (imgName, id) => {
+        const createImageInBody = (imgName, id, callback) => {
+
             let uploadedImages = document.querySelector('.uploaded-images')
             // let row = document.querySelector('.row')
             // let column = document.createElement('div')
@@ -71,13 +84,14 @@
             // row.append(column)
             uploadedImages.append(card)
 
+
             card.addEventListener('click', () => {
                 let fullImage = document.querySelector('.full-image')
                 fullImage.classList.toggle('active')
                 fullImage.childNodes[3].src = `/images/uploads/${imgName}`
 
                 let close = document.querySelector('.full-image .close')
-                close.addEventListener("click", function(){
+                close.addEventListener("click", function () {
                     this.parentElement.classList.remove('active')
                 })
                 // delete image
@@ -85,15 +99,16 @@
                 let btn = document.querySelectorAll('.btns .btn')
                 btn[1].addEventListener('click', async e => {
                     const res = await fetch(`/images/${id}`, {
-                        method:'DELETE'
+                        method: 'DELETE'
                     })
-
                     const data = await res.json()
-                    if(data.message == "image deleted successfully"){
+                    if (data.message == "image deleted successfully") {
                         location.assign('/dashboard')
                     }
                 })
             })
+
+            callback()
         }
 
         window.addEventListener('load', async () => {
@@ -106,10 +121,16 @@
             if (data.message == "no images found for user") {
                 let uploadedImages = document.querySelector('.uploaded-images')
                 uploadedImages.classList.add('nothing')
-                uploadedImages.innerText = "No images found"
+                uploadedImages.innerText = "Oops!. No images found"
+                let loader = document.querySelector('.loader')
+                loader.classList.remove('active')
             } else {
-                await data.forEach(element => {
-                    createImageInBody(element.image, element._id)
+                data.forEach(async element => {
+                    await createImageInBody(element.image, element._id, () => {
+
+                        let loader = document.querySelector('.loader')
+                        loader.classList.remove('active')
+                    })
                 });
             }
         })
@@ -127,7 +148,6 @@
             aside.classList.toggle('active')
             hamburger.classList.toggle('active')
         })
-
 
 
     </script>

@@ -20,6 +20,11 @@
    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.container img{
+    width: 60%;
+    height: auto;
+}
+
 
 #start{
     padding: 10px;
@@ -119,6 +124,14 @@ footer{
     padding: 5px;
     background: rgb(255, 92, 92);
     color: white;
+    border-radius: 10px;
+}
+
+.success{
+    border-radius: 10px;
+    padding: 5px;
+        background: rgb(34, 179, 5);
+        color: white;
 }
 
 .aside{
@@ -127,7 +140,7 @@ footer{
 
 .aside.active{
     position: fixed;
-    width: 65vh;
+    /* width: 65vh; */
     background: rgba(0, 0, 0, 0.803);
     height: 100%;
     float: right;
@@ -318,4 +331,54 @@ footer{
     color: white;
     border: none;
     cursor: pointer;
+}
+
+.loader{
+    display: none;
+}
+
+.loader.active, .active{
+    position: fixed;
+    background: rgba(0, 0, 0, 0.667);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    color: white;
+}
+
+.spinner{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: none;
+    border-top: 3px solid white;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from{
+        transform: rotate3d(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+.error-page{
+    display: flex;
+    height: 100dvh;
+    align-items:center ;
+    justify-content: center;
+    width: 100%;
+    color: rgb(81, 81, 81);
+    flex-direction: column;
+    gap: 20px;
 }

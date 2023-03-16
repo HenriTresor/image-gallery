@@ -15,16 +15,22 @@ login_form.addEventListener('submit', async e => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify({email, password})
+            body: JSON.stringify({ email, password })
         })
 
         const data = await res.json()
+        errSpan.innerText = 'Checking...!'
         console.log(data);
+
         if (data.message != 'user logged in') {
             errSpan.innerText = data.message
             errSpan.classList.add('error')
         } else {
-            location.assign('/dashboard')
+            errSpan.innerText = "Preparing your account...!"
+            errSpan.classList.add('success')
+            setTimeout(() => {
+                location.assign('/dashboard')
+            }, 2000);
         }
     } catch (err) {
         console.log(err.message);
@@ -48,7 +54,7 @@ signup_form.addEventListener('submit', async e => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email,username, password })
+            body: JSON.stringify({ email, username, password })
         })
 
         const data = await res.json()
@@ -57,7 +63,11 @@ signup_form.addEventListener('submit', async e => {
             errSpan.innerText = data.message
             errSpan.classList.add('error')
         } else {
-            location.assign('/dashboard')
+            errSpan.innerText = "Creating your account...!"
+            errSpan.classList.add('success')
+           setTimeout(() => {
+               location.assign('/dashboard')
+           }, 2000);
         }
     } catch (err) {
         console.log('error occurred');
