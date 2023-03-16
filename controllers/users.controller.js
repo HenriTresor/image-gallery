@@ -1,4 +1,4 @@
-const User = require('../models/users.models')
+    const User = require('../models/users.models')
 const {hashPwd, comparePwd} = require("../utils/pwd.hash")
 const createToken = require('../utils/jwt.js')
 
@@ -63,9 +63,6 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
-        if (1 == 1) {
-    
-}
         let { email, password } = req.body
 
         if (!email || !password) {
@@ -94,7 +91,7 @@ const loginUser = async (req, res) => {
 
 /**
  * @upload profile picture
- * PUT
+ * POST /users/profile
  */
 
 const updateImg = async (req, res) => {

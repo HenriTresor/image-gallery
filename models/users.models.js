@@ -31,5 +31,5 @@ const userSChema = new mongoose.Schema({
     })
 
 const User = mongoose.model('User', userSChema)
-
+    
 module.exports = User
